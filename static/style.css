@@ -1,0 +1,213 @@
+:root {
+    --primary-color: #2d3436;
+    --secondary-color: #636e72;
+    --accent-color: #0984e3;
+    --background-color: #f5f6fa;
+    --text-color: #2d3436;
+    --error-color: #d63031;
+    --success-color: #00b894;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.title-row {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+}
+
+.title-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.7rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--primary-color);
+    line-height: 1.1;
+    margin: 0.2rem 0 0.2rem 0;
+}
+
+.main-title-top {
+    margin-bottom: 0.1rem;
+}
+.main-title-bottom {
+    margin-top: 0.1rem;
+}
+
+.label-top.label-kanye {
+    margin-bottom: 0.1rem;
+}
+.label-bottom.label-shakespeare {
+    margin-top: 0.1rem;
+}
+
+.label {
+    font-size: 1.1rem;
+    color: #444;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+}
+
+.verse-block {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#couplets-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+}
+
+.couplet-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.verse-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-align: left;
+    white-space: pre-line;
+    line-height: 1.7;
+    flex: 1;
+}
+
+.verse-meta {
+    width: 100%;
+    text-align: right;
+    margin-top: 0.5rem;
+}
+
+.kanye-source {
+    color: #1976d2;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.kanye-source:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+.controls-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.big-pill-button {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 1.1rem 2.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: background 0.2s, transform 0.1s;
+}
+.big-pill-button:hover {
+    background: #111;
+    transform: translateY(-2px) scale(1.03);
+}
+
+.loading {
+    text-align: center;
+    margin: 2rem 0;
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    background-color: #ffe3e3;
+    color: var(--error-color);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+footer {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0.5rem;
+    }
+    .title-row {
+        gap: 1.2rem;
+    }
+    .main-title {
+        font-size: 1.5rem;
+    }
+    .verse-block {
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+    }
+    .verse-text {
+        font-size: 1.05rem;
+    }
+    .big-pill-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+} 

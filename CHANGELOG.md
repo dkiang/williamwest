@@ -16,4 +16,15 @@
   - Added caching for syllable counts and rhyming words
   - Implemented syllable-based grouping for faster line matching
   - Added early exit for high-quality matches
-  - Optimized data structures and reduced redundant computations 
+  - Optimized data structures and reduced redundant computations
+- Web interface:
+  - Created Flask backend with RESTful API
+  - Implemented modern, responsive frontend
+  - Added interactive controls for number of couplets
+  - Included loading states and error handling
+  - Styled with clean, modern design using CSS variables
+- Frontend updates:
+  - Display all 5 couplets at once, each as a block with Kanye avatar and blue source link
+  - Removed the "Built by Zuck" footer
+  - Loading spinner now only appears while couplets are being generated
+  - Updated layout to match reference screenshot more closely 

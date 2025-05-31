@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William West</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="title-row">
+                <div class="title-col">
+                    <span class="main-title main-title-top">William</span>
+                    <span class="label label-bottom label-shakespeare">Shakespeare</span>
+                </div>
+                <div class="title-col">
+                    <span class="label label-top label-kanye">Kanye</span>
+                    <span class="main-title main-title-bottom">West</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="verse-block" id="verse-block">
+                <div id="couplets-list"></div>
+            </div>
+            <div class="controls-center">
+                <button id="generate-btn" class="big-pill-button">Create Another</button>
+            </div>
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Generating...</p>
+            </div>
+            <div id="error" class="error hidden"></div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 
