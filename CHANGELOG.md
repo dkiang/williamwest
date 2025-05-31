@@ -11,4 +11,9 @@
   - Adding randomization to rhyming word selection
   - Implementing a more flexible matching system that allows for slight syllable count differences
   - Shuffling input lines to increase variety in selection
-  - Starting Shakespeare line search from random positions to ensure different matches for the same Kanye lyrics 
+  - Starting Shakespeare line search from random positions to ensure different matches for the same Kanye lyrics
+- Performance optimizations:
+  - Added caching for syllable counts and rhyming words
+  - Implemented syllable-based grouping for faster line matching
+  - Added early exit for high-quality matches
+  - Optimized data structures and reduced redundant computations 
