@@ -3,46 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>William West</title>
+    <meta name="description" content="Generate unique rhyming couplets by combining Kanye West lyrics with Shakespeare lines">
+    <title>William West - Kanye & Shakespeare Couplets Generator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header class="main-header">
+    <div class="container" role="main">
+        <header class="main-header" role="banner">
             <div class="title-row">
                 <div class="title-col">
                     <div class="name-with-image">
-                        <img src="{{ url_for('static', filename='shakespeare.png') }}" alt="Shakespeare" class="header-image">
-                        <span class="main-title main-title-top">William</span>
+                        <img src="{{ url_for('static', filename='shakespeare.png') }}" 
+                             alt="Portrait of William Shakespeare" 
+                             class="header-image"
+                             width="40" 
+                             height="40">
+                        <h1 class="main-title main-title-top">William</h1>
                     </div>
-                    <span class="label label-bottom label-shakespeare">Shakespeare</span>
+                    <span class="label label-bottom label-shakespeare" aria-label="Author">Shakespeare</span>
                 </div>
                 <div class="title-col">
-                    <span class="label label-top label-kanye">Kanye</span>
+                    <span class="label label-top label-kanye" aria-label="Author">Kanye</span>
                     <div class="name-with-image">
-                        <span class="main-title main-title-bottom">West</span>
-                        <img src="{{ url_for('static', filename='kanye.png') }}" alt="Kanye" class="header-image">
+                        <h1 class="main-title main-title-bottom">West</h1>
+                        <img src="{{ url_for('static', filename='kanye.png') }}" 
+                             alt="Portrait of Kanye West" 
+                             class="header-image"
+                             width="40" 
+                             height="40">
                     </div>
                 </div>
             </div>
         </header>
 
         <main>
-            <div class="verse-block" id="verse-block">
-                <div id="couplets-list"></div>
-            </div>
+            <section class="verse-block" id="verse-block" aria-live="polite">
+                <div id="couplets-list" role="list" aria-label="Generated couplets"></div>
+            </section>
             <div class="controls-center">
-                <button id="generate-btn" class="big-pill-button">Create Another</button>
+                <button id="generate-btn" 
+                        class="big-pill-button"
+                        aria-label="Generate new couplets">
+                    Create Another
+                </button>
             </div>
-            <div id="loading" class="loading hidden">
-                <div class="spinner"></div>
+            <div id="loading" 
+                 class="loading hidden" 
+                 role="status" 
+                 aria-label="Generating couplets">
+                <div class="spinner" aria-hidden="true"></div>
                 <p>Generating...</p>
             </div>
-            <div id="error" class="error hidden"></div>
+            <div id="error" 
+                 class="error hidden" 
+                 role="alert" 
+                 aria-live="assertive"></div>
         </main>
+        <footer class="credit-line" role="contentinfo">
+            <p>Inspired by the William/West student CS50 project</p>
+        </footer>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

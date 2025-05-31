@@ -1,6 +1,46 @@
 # Changelog
 
 ## [Unreleased]
+- Added comprehensive accessibility improvements:
+  - Proper semantic HTML structure
+  - ARIA roles and labels
+  - Keyboard navigation support
+  - Screen reader optimizations
+  - Focus management
+  - High contrast mode support
+  - Reduced motion preferences
+- Enhanced mobile responsiveness:
+  - Fluid typography and spacing
+  - Responsive layouts
+  - Touch-friendly targets
+  - Optimized for all screen sizes
+  - Improved mobile navigation
+- Added dark mode support:
+  - Automatic system preference detection
+  - Optimized color scheme
+  - Improved contrast ratios
+  - Consistent visual hierarchy
+- UI/UX improvements:
+  - Added author portraits in header
+  - Improved loading state behavior
+  - Enhanced button interactions
+  - Better error message visibility
+  - Added credit line attribution
+  - Optimized visual feedback
+- Performance optimizations:
+  - Improved image loading
+  - Optimized animations
+  - Better text rendering
+  - Reduced layout shifts
+  - Smoother transitions
+- Code quality improvements:
+  - Enhanced HTML semantics
+  - Modernized CSS with custom properties
+  - Improved JavaScript error handling
+  - Better code organization
+  - Added comprehensive comments
+
+## [Previous]
 - Removed author labels from output; couplets are now printed as a single two-line verse to appear as one complete poem.
 - Optimized couplet generation by:
   - Always starting with Kanye lines to reduce search space

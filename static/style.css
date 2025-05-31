@@ -6,6 +6,8 @@
     --text-color: #2d3436;
     --error-color: #d63031;
     --success-color: #00b894;
+    --focus-outline: 3px solid var(--accent-color);
+    --focus-outline-offset: 2px;
 }
 
 * {
@@ -14,59 +16,71 @@
     box-sizing: border-box;
 }
 
+/* Focus styles for keyboard navigation */
+:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 .container {
-    max-width: 600px;
+    max-width: min(600px, 95vw);
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: clamp(1rem, 5vw, 2rem);
 }
 
 .main-header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: clamp(1.5rem, 5vw, 2.5rem);
     position: relative;
 }
 
 .title-row {
     display: flex;
     justify-content: center;
-    gap: 2.5rem;
+    gap: clamp(1.2rem, 4vw, 2.5rem);
+    flex-wrap: wrap;
 }
 
 .title-col {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 120px;
 }
 
 .name-with-image {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: clamp(0.5rem, 2vw, 0.8rem);
 }
 
 .header-image {
-    width: 40px;
-    height: 40px;
+    width: clamp(32px, 8vw, 40px);
+    height: clamp(32px, 8vw, 40px);
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--primary-color);
+    aspect-ratio: 1;
 }
 
 .main-title {
     font-family: 'Inter', sans-serif;
-    font-size: 2.7rem;
+    font-size: clamp(1.5rem, 5vw, 2.7rem);
     font-weight: 900;
     letter-spacing: -0.03em;
     color: var(--primary-color);
     line-height: 1.1;
-    margin: 0.2rem 0 0.2rem 0;
+    margin: 0.2rem 0;
 }
 
 .main-title-top {
@@ -84,7 +98,7 @@ body {
 }
 
 .label {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
     color: #444;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -95,30 +109,38 @@ body {
     background: white;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-    padding: 2.5rem 2rem 2rem 2rem;
-    margin-bottom: 2.5rem;
+    padding: clamp(1.2rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+    margin-bottom: clamp(1.5rem, 5vw, 2.5rem);
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 #couplets-list {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2.2rem;
+    gap: clamp(1.5rem, 4vw, 2.2rem);
 }
 
 .couplet-block {
     display: flex;
     align-items: flex-start;
-    gap: 1.2rem;
+    gap: clamp(0.8rem, 2vw, 1.2rem);
     margin-bottom: 0.2rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.couplet-block:hover {
+    background-color: rgba(0,0,0,0.02);
 }
 
 .verse-text {
     font-family: 'Inter', sans-serif;
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 3vw, 1.25rem);
     font-weight: 500;
     color: var(--primary-color);
     text-align: left;
@@ -135,20 +157,25 @@ body {
 
 .kanye-source {
     color: #1976d2;
-    font-size: 1.05rem;
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
 }
-.kanye-source:hover {
+
+.kanye-source:hover,
+.kanye-source:focus-visible {
     color: #0d47a1;
     text-decoration: underline;
+    background-color: rgba(25, 118, 210, 0.1);
 }
 
 .controls-center {
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.5rem, 4vw, 2rem);
 }
 
 .big-pill-button {
@@ -156,35 +183,39 @@ body {
     color: #fff;
     border: none;
     border-radius: 999px;
-    padding: 1.1rem 2.5rem;
-    font-size: 1.25rem;
+    padding: clamp(0.8rem, 3vw, 1.1rem) clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1rem, 3vw, 1.25rem);
     font-weight: 700;
     letter-spacing: 0.01em;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    transition: background 0.2s, transform 0.1s;
+    transition: all 0.2s ease;
+    min-height: 44px; /* Minimum touch target size */
 }
-.big-pill-button:hover {
+
+.big-pill-button:hover,
+.big-pill-button:focus-visible {
     background: #111;
     transform: translateY(-2px) scale(1.03);
 }
 
+.big-pill-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
 .loading {
     text-align: center;
-    margin: 2rem 0;
+    margin: clamp(1.5rem, 4vw, 2rem) 0;
 }
+
 .spinner {
-    width: 40px;
-    height: 40px;
+    width: clamp(32px, 8vw, 40px);
+    height: clamp(32px, 8vw, 40px);
     margin: 0 auto 1rem;
     border: 4px solid #f3f3f3;
     border-top: 4px solid var(--accent-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 .error {
@@ -194,14 +225,70 @@ body {
     border-radius: 6px;
     margin-bottom: 1rem;
     text-align: center;
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .hidden {
     display: none !important;
 }
 
-footer {
-    display: none;
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .spinner {
+        animation: none;
+    }
+    .big-pill-button {
+        transition: none;
+    }
+    .big-pill-button:hover,
+    .big-pill-button:focus-visible {
+        transform: none;
+    }
+}
+
+/* High contrast mode */
+@media (forced-colors: active) {
+    .header-image {
+        border: 2px solid CanvasText;
+    }
+    .big-pill-button {
+        border: 2px solid CanvasText;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #f5f6fa;
+        --background-color: #2d3436;
+        --text-color: #f5f6fa;
+    }
+    .verse-block {
+        background: #1e272e;
+    }
+    .verse-text {
+        color: #f5f6fa;
+    }
+    .label {
+        color: #dfe6e9;
+    }
+    .big-pill-button {
+        background: #0984e3;
+    }
+    .big-pill-button:hover,
+    .big-pill-button:focus-visible {
+        background: #0c7cd5;
+    }
+    .error {
+        background-color: #2d1e1e;
+    }
+    .spinner {
+        border-color: #2d3436;
+        border-top-color: #0984e3;
+    }
+    .credit-line {
+        color: #b2bec3;
+    }
 }
 
 @media (max-width: 600px) {
@@ -228,4 +315,19 @@ footer {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
     }
+}
+
+.credit-line {
+    text-align: center;
+    margin-top: clamp(2rem, 6vw, 3rem);
+    padding: 1rem;
+    color: var(--secondary-color);
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    opacity: 0.8;
+}
+
+.credit-line p {
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.4;
 } 

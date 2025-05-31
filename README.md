@@ -1,69 +1,114 @@
-# Kanye-Shakespeare Rhyming Couplets Generator
+# William West - Kanye & Shakespeare Couplets Generator
 
-This project generates rhyming couplets by alternating lines from Kanye West lyrics with lines from Shakespeare's works. Each couplet is created by finding lines that rhyme and have a similar number of syllables.
+A modern web application that generates unique rhyming couplets by combining Kanye West lyrics with Shakespeare's works. Each couplet is carefully crafted to ensure proper rhyming and syllable matching, presented in a beautiful, accessible interface.
 
-## Features
+## 🌟 Features
 
-- Combines Kanye West lyrics with Shakespeare lines to create unique rhyming couplets
-- Ensures lines have similar syllable counts for better rhythm
-- Cleans and processes lyrics to remove parenthetical content and extra whitespace
-- Uses natural language processing to identify rhymes and count syllables
+### Core Functionality
+- Generates unique rhyming couplets by combining Kanye West and Shakespeare lines
+- Ensures proper syllable matching for natural rhythm
+- Cleans and processes lyrics for optimal results
+- Uses advanced NLP for rhyme detection and syllable counting
+- Prevents repetition of rhyming pairs
 
-## Requirements
+### Modern Web Interface
+- Real-time couplet generation
+- Beautiful, responsive design
+- Author portraits in header
+- Dark mode support
+- High contrast mode
+- Reduced motion preferences
+- Full keyboard navigation
+- Screen reader optimization
+- Mobile-first approach
 
-- Python 3.7+
-- Required packages (install using `pip install -r requirements.txt`):
-  - pandas
-  - pronouncing
-  - nltk
+### Accessibility Features
+- Semantic HTML structure
+- ARIA roles and labels
+- Keyboard navigation
+- Screen reader support
+- Focus management
+- High contrast mode
+- Reduced motion
+- Proper color contrast
+- Touch-friendly targets
+- Responsive text sizing
 
-## Installation
+## 🚀 Development Setup
 
-1. Clone this repository
-2. Install the required packages:
+1. Clone the repository
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
+3. Configure your web server to serve the Flask application
+4. Set up your production environment variables
 
-## Usage
+## 💻 Technical Stack
 
-Simply run the script:
-```bash
-python generate_couplets.py
-```
+- **Backend**: Flask (Python)
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Processing**: NLTK, pronouncing
+- **Data**: pandas
+- **Accessibility**: WCAG 2.1 compliant
+- **Design**: Mobile-first, responsive
+- **Hosting**: Compatible with any Python web server
 
-The script will:
-1. Read the lyrics from `lyrics/kanye_west.csv` and `lyrics/shakespeare.csv`
-2. Generate 5 rhyming couplets
-3. Print the results to the console
+## 🔧 Requirements
 
-## How it Works
+- Python 3.7+
+- Required packages:
+  - pandas
+  - pronouncing
+  - nltk
+  - flask
+- Web server with Python support (e.g., Gunicorn, uWSGI)
 
-1. The script reads both CSV files containing the lyrics
-2. It cleans the lines by removing parenthetical content and extra whitespace
-3. For each line, it:
-   - Counts the number of syllables
+## 📱 Features
+
+The web interface provides:
+- One-click couplet generation
+- View all 5 couplets at once
+- Source attribution for Kanye lyrics
+- Dark mode support
+- Keyboard navigation
+- Screen reader support
+- Touch-friendly interface
+
+## 🎯 How It Works
+
+1. **Data Processing**
+   - Reads Kanye and Shakespeare lyrics
+   - Cleans and normalizes text
+   - Removes parenthetical content
+   - Filters by length and quality
+
+2. **Couplet Generation**
+   - Counts syllables in each line
    - Identifies rhyming words
-   - Matches lines with similar syllable counts and rhyming endings
-4. Generates couplets by alternating between Kanye and Shakespeare lines
-5. Ensures each couplet has a good rhyme and similar syllable count
+   - Matches lines with similar syllable counts
+   - Ensures proper alternation
+   - Prevents repetition
 
-## Output Example
+3. **Web Interface**
+   - Real-time generation
+   - Responsive layout
+   - Accessible design
+   - System preference adaptation
+   - Error handling
 
-```
-Generated Rhyming Couplets:
+## 📝 Notes
 
-Couplet 1:
-Kanye:    Sing 'til the power of the Lord comes down
-Shakespeare: And dig deep trenches in thy beauty's field
+- Filters: 4-16 syllables per line
+- Syllable tolerance for natural variation
+- Quality varies with available source material
+- Adapts to system preferences
+- Fully accessible interface
 
-Couplet 2:
-Kanye:    We need you sing 'til the power
-Shakespeare: That use is not forbidden usury
-```
+## 🙏 Credits
 
-## Notes
+Inspired by the William/West student CS50 project.
 
-- The script filters out very short lines (less than 4 words) and very long lines (more than 15 syllables)
-- It uses a syllable tolerance of 1 to allow for some variation in line length
-- The quality of rhymes may vary depending on the available lines in the source files 
+## 📄 License
+
+This project is open source and available under the MIT License. 
