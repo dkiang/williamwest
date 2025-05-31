@@ -14,12 +14,18 @@
         <header class="main-header">
             <div class="title-row">
                 <div class="title-col">
-                    <span class="main-title main-title-top">William</span>
+                    <div class="name-with-image">
+                        <img src="{{ url_for('static', filename='shakespeare.png') }}" alt="Shakespeare" class="header-image">
+                        <span class="main-title main-title-top">William</span>
+                    </div>
                     <span class="label label-bottom label-shakespeare">Shakespeare</span>
                 </div>
                 <div class="title-col">
                     <span class="label label-top label-kanye">Kanye</span>
-                    <span class="main-title main-title-bottom">West</span>
+                    <div class="name-with-image">
+                        <span class="main-title main-title-bottom">West</span>
+                        <img src="{{ url_for('static', filename='kanye.png') }}" alt="Kanye" class="header-image">
+                    </div>
                 </div>
             </div>
         </header>

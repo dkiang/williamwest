@@ -45,6 +45,20 @@ body {
     align-items: center;
 }
 
+.name-with-image {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.header-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
 .main-title {
     font-family: 'Inter', sans-serif;
     font-size: 2.7rem;
@@ -199,6 +213,10 @@ footer {
     }
     .main-title {
         font-size: 1.5rem;
+    }
+    .header-image {
+        width: 32px;
+        height: 32px;
     }
     .verse-block {
         padding: 1.2rem 0.5rem 1rem 0.5rem;
