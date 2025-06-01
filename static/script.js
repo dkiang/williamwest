@@ -209,12 +209,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const verseBlock = document.getElementById('verse-block');
     const favoritesBlock = document.getElementById('favorites-block');
     const viewFavoritesBtn = document.getElementById('view-favorites');
+    const createAnotherBtn = document.getElementById('create-another');
     
     // View switching
     viewFavoritesBtn.addEventListener('click', () => {
         if (favoritesBlock.classList.contains('hidden')) {
             // Switch to favorites view
-            viewFavoritesBtn.textContent = 'Generate Couplets';
+            viewFavoritesBtn.textContent = 'Create Another';
             viewFavoritesBtn.setAttribute('aria-pressed', 'true');
             verseBlock.classList.add('hidden');
             favoritesBlock.classList.remove('hidden');
@@ -227,6 +228,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             verseBlock.classList.remove('hidden');
             generateVerses();
         }
+    });
+
+    // Create Another button handler
+    createAnotherBtn.addEventListener('click', () => {
+        viewFavoritesBtn.textContent = 'View Favorites';
+        viewFavoritesBtn.setAttribute('aria-pressed', 'false');
+        favoritesBlock.classList.add('hidden');
+        verseBlock.classList.remove('hidden');
+        generateVerses();
     });
 
     // Load lyrics data

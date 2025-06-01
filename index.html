@@ -43,30 +43,33 @@
         <main>
             <section class="verse-block" id="verse-block" aria-live="polite">
                 <div id="couplets-list" role="list" aria-label="Generated couplets"></div>
+                <div class="controls-center">
+                    <div class="button-group">
+                        <button id="generate-btn" 
+                                class="big-pill-button"
+                                aria-label="Generate new couplets">
+                            Create Another
+                        </button>
+                        <button id="view-favorites" 
+                                class="view-button"
+                                aria-pressed="false">
+                            View Favorites
+                        </button>
+                    </div>
+                </div>
             </section>
 
-            <section class="favorites-block hidden" id="favorites-block" aria-live="polite">
+            <div id="favorites-block" class="favorites-block hidden">
                 <h2>Favorite Couplets</h2>
-                <div id="favorites-list" role="list" aria-label="Favorite couplets"></div>
+                <div id="favorites-list"></div>
                 <div id="no-favorites" class="hidden">
                     <p>No favorite couplets yet. Generate some couplets and click the heart icon to add them to your favorites!</p>
                 </div>
-            </section>
-
-            <div class="controls-center">
-                <div class="button-group">
-                    <button id="generate-btn" 
-                            class="big-pill-button"
-                            aria-label="Generate new couplets">
-                        Create Another
-                    </button>
-                    <button id="view-favorites" 
-                            class="view-button"
-                            aria-pressed="false">
-                        View Favorites
-                    </button>
+                <div class="controls-center">
+                    <button id="create-another" class="big-pill-button">Create Another</button>
                 </div>
             </div>
+
             <div id="loading" 
                  class="loading hidden" 
                  role="status" 
