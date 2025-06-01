@@ -7,8 +7,10 @@ A web application that generates unique rhyming couplets by combining Kanye West
 ### Core Functionality
 - Generates unique rhyming couplets combining Kanye West and Shakespeare
 - Maintains proper syllable count and rhyme schemes
-- Provides source attribution and links to original lyrics
+- Uses an extensive rhyming dictionary to ensure varied and interesting rhymes
+- Prioritizes different rhyming words in each couplet
 - Generates multiple couplets at once for variety
+- Supports saving favorite couplets locally
 
 ### Modern Web Interface
 - Clean, minimalist design with elegant typography
@@ -16,6 +18,7 @@ A web application that generates unique rhyming couplets by combining Kanye West
 - Responsive layout that works on all devices
 - Dark mode support
 - Loading indicators for better UX
+- Favorites management system
 
 ### Accessibility Features
 - Semantic HTML structure
@@ -24,6 +27,7 @@ A web application that generates unique rhyming couplets by combining Kanye West
 - Keyboard navigable
 - High contrast text
 - Responsive text sizing
+- Reduced motion support
 
 ## 🚀 Quick Start
 
@@ -36,8 +40,9 @@ williamwest/
 ├── static/
 │   ├── style.css      # Styles
 │   ├── script.js      # Application logic
-│   ├── data/
-│   │   └── lyrics.json # Pre-processed lyrics data
+│   ├── lyrics/
+│   │   ├── kanye_west.csv        # Kanye West lyrics
+│   │   └── shakespeare_sonnets.csv # Shakespeare sonnets
 │   ├── kanye.png      # Kanye West portrait
 │   └── shakespeare.png # Shakespeare portrait
 └── README.md          # This file
@@ -50,60 +55,80 @@ williamwest/
   - CSS3 (with modern features like CSS Grid and Flexbox)
   - Vanilla JavaScript (ES6+)
   - Web Fonts (Playfair Display, Inter)
+  - Local Storage for favorites
 
 - **Data Processing**
-  - Pre-processed JSON data
+  - CSV-formatted lyrics data
   - Client-side syllable counting
   - Client-side rhyme detection
   - Efficient couplet generation algorithm
+  - Local storage for user preferences
 
 - **Accessibility**
   - WCAG 2.1 compliant
   - Semantic HTML
   - ARIA attributes
   - Responsive design
+  - Reduced motion support
+  - High contrast mode
 
 ## 🎯 Features
 
 The web interface allows users to:
 - Generate new couplets with a single click
 - View multiple couplets at once
-- See the source of each line
-- Access original lyrics on Genius
+- Save favorite couplets locally
+- Switch between generation and favorites views
 - Use the application on any device
 - Navigate using keyboard or screen reader
 - Enjoy dark mode for comfortable reading
+- Experience reduced motion if preferred
 
 ## 🔧 How It Works
 
 1. **Data Processing**
-   - Lyrics are pre-processed and stored in JSON format
+   - Lyrics are stored in CSV format
    - Each line is analyzed for syllables and rhyme patterns
-   - Data is optimized for quick client-side processing
+   - Data is loaded and processed entirely in the browser
+   - Lines are filtered for length and formatting
 
 2. **Couplet Generation**
    - Randomly selects a Kanye West line
-   - Analyzes the line for syllables and rhyme
-   - Finds a matching Shakespeare line
+   - Analyzes the line for syllables and rhyme using an extensive rhyming dictionary
+   - Finds a matching Shakespeare line with a different rhyming word
    - Ensures proper syllable count and rhyme scheme
+   - Skips lines that can't find a good rhyming partner
    - Generates multiple unique combinations
 
-3. **Web Interface**
+3. **Rhyming System**
+   - Uses a comprehensive rhyming dictionary with multiple word groups
+   - Implements longest matching ending algorithm for better rhyme detection
+   - Prioritizes different rhyming words in each couplet
+   - Maintains strict syllable matching for natural flow
+   - Filters out lines that can't find suitable rhyming partners
+
+4. **Web Interface**
    - Loads lyrics data on startup
    - Handles user interactions
    - Manages loading states
    - Displays results with proper formatting
    - Provides error handling
    - Maintains accessibility
+   - Supports favorites management
 
 ## 📝 Notes
 
 - The couplet generation process filters out lines that:
-  - Are too short or too long
-  - Contain inappropriate content
-  - Don't have suitable rhyming partners
-- Due to the random nature of generation, some couplets may be more coherent than others
+  - Are too short (less than 3 words) or too long (more than 15 words)
+  - Contain brackets (usually stage directions or chorus markers)
+  - Contain parenthetical content
+  - Are empty or contain only whitespace
+  - Don't have suitable rhyming partners with different words
+  - Can't maintain proper syllable count
+- Due to the strict rhyming requirements, some generation attempts may take longer
 - The application works offline after initial load
+- Note: The application does not filter for inappropriate content. The lyrics are used as-is from the source material.
+- Favorites are stored in the browser's local storage
 
 ## 🙏 Credits
 

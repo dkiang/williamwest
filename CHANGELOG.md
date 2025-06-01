@@ -39,6 +39,12 @@
   - Improved JavaScript error handling
   - Better code organization
   - Added comprehensive comments
+- Rhyming improvements:
+  - Expanded rhyming dictionary with many more word groups
+  - Modified rhyming logic to prioritize different rhyming words
+  - Removed fallback to using same word in both lines
+  - Added stricter rhyme matching for better couplet quality
+  - Improved rhyme detection with longest matching ending algorithm
 
 ## [Previous]
 - Removed author labels from output; couplets are now printed as a single two-line verse to appear as one complete poem.
