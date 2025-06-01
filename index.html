@@ -43,21 +43,22 @@
         <main>
             <section class="verse-block" id="verse-block" aria-live="polite">
                 <div id="couplets-list" role="list" aria-label="Generated couplets"></div>
-                <div class="controls-center">
-                    <div class="button-group">
-                        <button id="generate-btn" 
-                                class="big-pill-button"
-                                aria-label="Generate new couplets">
-                            Create Another
-                        </button>
-                        <button id="view-favorites" 
-                                class="view-button"
-                                aria-pressed="false">
-                            View Favorites
-                        </button>
-                    </div>
-                </div>
             </section>
+
+            <div id="main-controls" class="controls-center">
+                <div class="button-group">
+                    <button id="generate-btn" 
+                            class="big-pill-button"
+                            aria-label="Generate new couplets">
+                        Create Another
+                    </button>
+                    <button id="view-favorites" 
+                            class="big-pill-button"
+                            aria-pressed="false">
+                        View Favorites
+                    </button>
+                </div>
+            </div>
 
             <div id="favorites-block" class="favorites-block hidden">
                 <h2>Favorite Couplets</h2>

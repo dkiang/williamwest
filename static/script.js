@@ -210,6 +210,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const favoritesBlock = document.getElementById('favorites-block');
     const viewFavoritesBtn = document.getElementById('view-favorites');
     const createAnotherBtn = document.getElementById('create-another');
+    const mainControls = document.getElementById('main-controls');
     
     // View switching
     viewFavoritesBtn.addEventListener('click', () => {
@@ -218,6 +219,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             viewFavoritesBtn.textContent = 'Create Another';
             viewFavoritesBtn.setAttribute('aria-pressed', 'true');
             verseBlock.classList.add('hidden');
+            mainControls.classList.add('hidden');
             favoritesBlock.classList.remove('hidden');
             renderFavorites();
         } else {
@@ -225,6 +227,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             viewFavoritesBtn.textContent = 'View Favorites';
             viewFavoritesBtn.setAttribute('aria-pressed', 'false');
             favoritesBlock.classList.add('hidden');
+            mainControls.classList.remove('hidden');
             verseBlock.classList.remove('hidden');
             generateVerses();
         }
@@ -235,6 +238,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         viewFavoritesBtn.textContent = 'View Favorites';
         viewFavoritesBtn.setAttribute('aria-pressed', 'false');
         favoritesBlock.classList.add('hidden');
+        mainControls.classList.remove('hidden');
         verseBlock.classList.remove('hidden');
         generateVerses();
     });
@@ -296,8 +300,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const shakespeareMatch = findRhymingLine(kanyeLine, lyricsData.shakespeare);
                 if (shakespeareMatch) {
                     couplets.push({
-                        line1: kanyeLine,
-                        line2: shakespeareMatch
+                        line1: shakespeareMatch,  // Shakespeare line first
+                        line2: kanyeLine         // Kanye line second
                     });
                     usedRhymes.add(lastWord);
                 }
