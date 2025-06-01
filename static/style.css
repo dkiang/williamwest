@@ -125,13 +125,13 @@ body {
 }
 
 .couplet-block {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(0.8rem, 2vw, 1.2rem);
+    position: relative;
     margin-bottom: 0.2rem;
     padding: 0.5rem;
     border-radius: 8px;
     transition: background-color 0.2s;
+    min-height: 80px;
+    display: block;
 }
 
 .couplet-block:hover {
@@ -146,7 +146,8 @@ body {
     text-align: left;
     white-space: pre-line;
     line-height: 1.7;
-    flex: 1;
+    padding-bottom: 2rem;
+    display: block;
 }
 
 .verse-meta {
@@ -330,4 +331,99 @@ body {
     max-width: 400px;
     margin: 0 auto;
     line-height: 1.4;
+}
+
+.view-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.view-button {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    color: var(--text-color);
+    border-radius: 2rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    min-height: 44px;
+}
+
+.view-button:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.view-button.active {
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+.favorites-block {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.favorites-block h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    font-family: 'Playfair Display', serif;
+}
+
+.couplet-actions {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 1;
+    text-align: right;
+    width: auto;
+}
+
+.favorite-heart, .delete-favorite {
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: inline;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.favorite-heart:hover, .delete-favorite:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.favorite-heart.favorited {
+    color: #ff6b6b;
+    opacity: 1;
+}
+
+.favorite-heart.favorited:hover {
+    color: #ff5252;
+}
+
+#no-favorites {
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0.7;
+    padding: 2rem;
 } 

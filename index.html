@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container" role="main">
@@ -43,12 +44,28 @@
             <section class="verse-block" id="verse-block" aria-live="polite">
                 <div id="couplets-list" role="list" aria-label="Generated couplets"></div>
             </section>
+
+            <section class="favorites-block hidden" id="favorites-block" aria-live="polite">
+                <h2>Favorite Couplets</h2>
+                <div id="favorites-list" role="list" aria-label="Favorite couplets"></div>
+                <div id="no-favorites" class="hidden">
+                    <p>No favorite couplets yet. Generate some couplets and click the heart icon to add them to your favorites!</p>
+                </div>
+            </section>
+
             <div class="controls-center">
-                <button id="generate-btn" 
-                        class="big-pill-button"
-                        aria-label="Generate new couplets">
-                    Create Another
-                </button>
+                <div class="button-group">
+                    <button id="generate-btn" 
+                            class="big-pill-button"
+                            aria-label="Generate new couplets">
+                        Create Another
+                    </button>
+                    <button id="view-favorites" 
+                            class="view-button"
+                            aria-pressed="false">
+                        View Favorites
+                    </button>
+                </div>
             </div>
             <div id="loading" 
                  class="loading hidden" 
