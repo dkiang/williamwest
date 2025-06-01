@@ -9,27 +9,69 @@ const syllableCount = (word) => {
 };
 
 const getRhymingWords = (word) => {
-    // Simple rhyming dictionary for common endings
+    // Expanded rhyming dictionary with more word groups
     const rhymeGroups = {
-        'ing': ['ing', 'ring', 'sing', 'thing', 'wing'],
-        'ay': ['ay', 'day', 'say', 'way', 'play'],
-        'ight': ['ight', 'night', 'right', 'sight', 'light'],
-        'own': ['own', 'down', 'town', 'crown', 'brown'],
-        'ake': ['ake', 'make', 'take', 'bake', 'cake'],
-        'all': ['all', 'call', 'fall', 'hall', 'ball'],
-        'ame': ['ame', 'came', 'fame', 'game', 'name'],
-        'and': ['and', 'band', 'hand', 'land', 'stand'],
-        'ate': ['ate', 'date', 'fate', 'gate', 'hate'],
-        'ear': ['ear', 'dear', 'fear', 'hear', 'near']
+        'ing': ['ring', 'sing', 'thing', 'wing', 'bring', 'cling', 'fling', 'king', 'ming', 'ping', 'spring', 'sting', 'swing', 'wing'],
+        'ay': ['day', 'say', 'way', 'play', 'bay', 'clay', 'gray', 'hay', 'lay', 'may', 'pay', 'ray', 'stay', 'tray'],
+        'ight': ['night', 'right', 'sight', 'light', 'bright', 'fight', 'flight', 'height', 'knight', 'might', 'tight', 'white'],
+        'own': ['down', 'town', 'crown', 'brown', 'clown', 'drown', 'frown', 'gown', 'renown', 'thrown'],
+        'ake': ['make', 'take', 'bake', 'cake', 'fake', 'lake', 'rake', 'shake', 'snake', 'stake', 'wake'],
+        'all': ['call', 'fall', 'hall', 'ball', 'small', 'tall', 'wall', 'stall', 'thrall'],
+        'ame': ['came', 'fame', 'game', 'name', 'blame', 'flame', 'frame', 'same', 'shame', 'tame'],
+        'and': ['band', 'hand', 'land', 'stand', 'brand', 'grand', 'sand', 'strand'],
+        'ate': ['date', 'fate', 'gate', 'hate', 'late', 'mate', 'rate', 'state', 'wait'],
+        'ear': ['dear', 'fear', 'hear', 'near', 'clear', 'gear', 'peer', 'sear', 'tear', 'year'],
+        'end': ['bend', 'friend', 'lend', 'send', 'spend', 'trend', 'wend'],
+        'est': ['best', 'chest', 'guest', 'nest', 'rest', 'test', 'west', 'zest'],
+        'ice': ['dice', 'nice', 'price', 'rice', 'slice', 'spice', 'twice', 'vice'],
+        'ine': ['fine', 'line', 'mine', 'nine', 'pine', 'shine', 'sign', 'wine'],
+        'ing': ['bring', 'cling', 'fling', 'king', 'ring', 'sing', 'spring', 'sting', 'swing', 'thing', 'wing'],
+        'ink': ['blink', 'drink', 'link', 'pink', 'sink', 'think', 'wink'],
+        'ire': ['desire', 'fire', 'hire', 'tire', 'wire'],
+        'ite': ['bite', 'kite', 'light', 'might', 'night', 'right', 'sight', 'tight', 'white'],
+        'ive': ['alive', 'drive', 'five', 'give', 'live', 'strive', 'thrive'],
+        'old': ['bold', 'cold', 'fold', 'gold', 'hold', 'sold', 'told'],
+        'one': ['alone', 'bone', 'cone', 'done', 'gone', 'known', 'stone', 'tone'],
+        'ong': ['long', 'song', 'strong', 'wrong'],
+        'ood': ['food', 'good', 'hood', 'mood', 'stood', 'wood'],
+        'ook': ['book', 'cook', 'look', 'took'],
+        'ool': ['cool', 'fool', 'pool', 'school', 'tool'],
+        'oon': ['moon', 'noon', 'soon', 'spoon'],
+        'ore': ['more', 'score', 'shore', 'store', 'tore'],
+        'orn': ['born', 'corn', 'horn', 'morn', 'thorn', 'worn'],
+        'ose': ['close', 'nose', 'pose', 'rose', 'those'],
+        'ost': ['cost', 'lost', 'most', 'post'],
+        'ove': ['above', 'dove', 'glove', 'love', 'move', 'prove'],
+        'own': ['brown', 'clown', 'crown', 'down', 'drown', 'frown', 'gown', 'town'],
+        'uck': ['buck', 'duck', 'luck', 'stuck', 'truck'],
+        'ull': ['bull', 'full', 'pull'],
+        'ump': ['bump', 'dump', 'jump', 'lump', 'pump'],
+        'ung': ['hung', 'lung', 'rung', 'sung', 'tongue'],
+        'ure': ['cure', 'pure', 'sure'],
+        'ush': ['bush', 'push', 'rush'],
+        'ust': ['dust', 'just', 'must', 'trust'],
+        'ute': ['cute', 'mute', 'route'],
+        'y': ['by', 'cry', 'dry', 'fly', 'high', 'my', 'sky', 'try', 'why']
     };
 
     // Find the longest matching ending
+    let bestMatch = '';
+    let bestRhymes = [];
+    
     for (const [ending, rhymes] of Object.entries(rhymeGroups)) {
-        if (word.endsWith(ending)) {
-            return rhymes;
+        if (word.endsWith(ending) && ending.length > bestMatch.length) {
+            bestMatch = ending;
+            bestRhymes = rhymes;
         }
     }
-    return [word]; // Return the word itself if no rhyme group found
+    
+    // If we found a rhyme group, filter out the original word
+    if (bestRhymes.length > 0) {
+        return bestRhymes.filter(rhyme => rhyme !== word);
+    }
+    
+    // If no rhyme group found, return empty array to force finding a different word
+    return [];
 };
 
 const countLineSyllables = (line) => {
@@ -40,6 +82,11 @@ const findRhymingLine = (line, otherLines, syllableTolerance = 2) => {
     const targetSyllables = countLineSyllables(line);
     const lastWord = line.split(' ').pop().toLowerCase();
     const rhymingWords = getRhymingWords(lastWord);
+    
+    // If no rhyming words found, try a different line
+    if (rhymingWords.length === 0) {
+        return null;
+    }
     
     // Group lines by syllable count for faster lookup
     const syllableGroups = {};
@@ -58,22 +105,6 @@ const findRhymingLine = (line, otherLines, syllableTolerance = 2) => {
                 const matches = syllableGroups[target].filter(otherLine => {
                     const otherLastWord = otherLine.split(' ').pop().toLowerCase();
                     // Only accept if the rhyming word is different from the original word
-                    return rhymingWords.includes(otherLastWord) && otherLastWord !== lastWord;
-                });
-                if (matches.length > 0) {
-                    return matches[Math.floor(Math.random() * matches.length)];
-                }
-            }
-        }
-    }
-    
-    // If no different rhyming words found, try one more time with the original word
-    // This ensures we can still generate couplets even if no different rhymes are available
-    for (let diff = 0; diff <= syllableTolerance; diff++) {
-        for (const target of [targetSyllables + diff, targetSyllables - diff]) {
-            if (syllableGroups[target]) {
-                const matches = syllableGroups[target].filter(otherLine => {
-                    const otherLastWord = otherLine.split(' ').pop().toLowerCase();
                     return rhymingWords.includes(otherLastWord);
                 });
                 if (matches.length > 0) {
@@ -82,6 +113,9 @@ const findRhymingLine = (line, otherLines, syllableTolerance = 2) => {
             }
         }
     }
+    
+    // If no match found with different rhyming words, return null
+    // This will cause the generator to try a different line
     return null;
 };
 
