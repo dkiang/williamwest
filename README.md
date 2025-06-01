@@ -1,113 +1,113 @@
 # William West - Kanye & Shakespeare Couplets Generator
 
-A modern web application that generates unique rhyming couplets by combining Kanye West lyrics with Shakespeare's works. Each couplet is carefully crafted to ensure proper rhyming and syllable matching, presented in a beautiful, accessible interface.
+A web application that generates unique rhyming couplets by combining Kanye West lyrics with Shakespeare lines. The application runs entirely in the browser, using JavaScript to create interesting and often humorous combinations of modern rap lyrics with classic Shakespearean verse.
 
 ## 🌟 Features
 
 ### Core Functionality
-- Generates unique rhyming couplets by combining Kanye West and Shakespeare lines
-- Ensures proper syllable matching for natural rhythm
-- Cleans and processes lyrics for optimal results
-- Uses advanced NLP for rhyme detection and syllable counting
-- Prevents repetition of rhyming pairs
+- Generates unique rhyming couplets combining Kanye West and Shakespeare
+- Maintains proper syllable count and rhyme schemes
+- Provides source attribution and links to original lyrics
+- Generates multiple couplets at once for variety
 
 ### Modern Web Interface
-- Real-time couplet generation
-- Beautiful, responsive design
-- Author portraits in header
+- Clean, minimalist design with elegant typography
+- Smooth animations and transitions
+- Responsive layout that works on all devices
 - Dark mode support
-- High contrast mode
-- Reduced motion preferences
-- Full keyboard navigation
-- Screen reader optimization
-- Mobile-first approach
+- Loading indicators for better UX
 
 ### Accessibility Features
 - Semantic HTML structure
-- ARIA roles and labels
-- Keyboard navigation
-- Screen reader support
-- Focus management
-- High contrast mode
-- Reduced motion
-- Proper color contrast
-- Touch-friendly targets
+- ARIA labels and roles
+- Screen reader friendly
+- Keyboard navigable
+- High contrast text
 - Responsive text sizing
 
-## 🚀 Development Setup
+## 🚀 Quick Start
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Configure your web server to serve the Flask application
-4. Set up your production environment variables
+Simply host the static files on any web server. The application requires no server-side processing and runs entirely in the browser.
+
+### File Structure
+```
+williamwest/
+├── index.html          # Main HTML file
+├── static/
+│   ├── style.css      # Styles
+│   ├── script.js      # Application logic
+│   ├── data/
+│   │   └── lyrics.json # Pre-processed lyrics data
+│   ├── kanye.png      # Kanye West portrait
+│   └── shakespeare.png # Shakespeare portrait
+└── README.md          # This file
+```
 
 ## 💻 Technical Stack
 
-- **Backend**: Flask (Python)
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Processing**: NLTK, pronouncing
-- **Data**: pandas
-- **Accessibility**: WCAG 2.1 compliant
-- **Design**: Mobile-first, responsive
-- **Hosting**: Compatible with any Python web server
+- **Frontend**
+  - HTML5
+  - CSS3 (with modern features like CSS Grid and Flexbox)
+  - Vanilla JavaScript (ES6+)
+  - Web Fonts (Playfair Display, Inter)
 
-## 🔧 Requirements
+- **Data Processing**
+  - Pre-processed JSON data
+  - Client-side syllable counting
+  - Client-side rhyme detection
+  - Efficient couplet generation algorithm
 
-- Python 3.7+
-- Required packages:
-  - pandas
-  - pronouncing
-  - nltk
-  - flask
-- Web server with Python support (e.g., Gunicorn, uWSGI)
+- **Accessibility**
+  - WCAG 2.1 compliant
+  - Semantic HTML
+  - ARIA attributes
+  - Responsive design
 
-## 📱 Features
+## 🎯 Features
 
-The web interface provides:
-- One-click couplet generation
-- View all 5 couplets at once
-- Source attribution for Kanye lyrics
-- Dark mode support
-- Keyboard navigation
-- Screen reader support
-- Touch-friendly interface
+The web interface allows users to:
+- Generate new couplets with a single click
+- View multiple couplets at once
+- See the source of each line
+- Access original lyrics on Genius
+- Use the application on any device
+- Navigate using keyboard or screen reader
+- Enjoy dark mode for comfortable reading
 
-## 🎯 How It Works
+## 🔧 How It Works
 
 1. **Data Processing**
-   - Reads Kanye and Shakespeare lyrics
-   - Cleans and normalizes text
-   - Removes parenthetical content
-   - Filters by length and quality
+   - Lyrics are pre-processed and stored in JSON format
+   - Each line is analyzed for syllables and rhyme patterns
+   - Data is optimized for quick client-side processing
 
 2. **Couplet Generation**
-   - Counts syllables in each line
-   - Identifies rhyming words
-   - Matches lines with similar syllable counts
-   - Ensures proper alternation
-   - Prevents repetition
+   - Randomly selects a Kanye West line
+   - Analyzes the line for syllables and rhyme
+   - Finds a matching Shakespeare line
+   - Ensures proper syllable count and rhyme scheme
+   - Generates multiple unique combinations
 
 3. **Web Interface**
-   - Real-time generation
-   - Responsive layout
-   - Accessible design
-   - System preference adaptation
-   - Error handling
+   - Loads lyrics data on startup
+   - Handles user interactions
+   - Manages loading states
+   - Displays results with proper formatting
+   - Provides error handling
+   - Maintains accessibility
 
 ## 📝 Notes
 
-- Filters: 4-16 syllables per line
-- Syllable tolerance for natural variation
-- Quality varies with available source material
-- Adapts to system preferences
-- Fully accessible interface
+- The couplet generation process filters out lines that:
+  - Are too short or too long
+  - Contain inappropriate content
+  - Don't have suitable rhyming partners
+- Due to the random nature of generation, some couplets may be more coherent than others
+- The application works offline after initial load
 
 ## 🙏 Credits
 
-Inspired by the William/West student CS50 project.
+Inspired by the William/West student CS50 project. This version has been reimagined as a modern, accessible web application that runs entirely in the browser.
 
 ## 📄 License
 

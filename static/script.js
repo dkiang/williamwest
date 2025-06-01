@@ -1,8 +1,148 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Utility functions for syllable counting and rhyming
+const syllableCount = (word) => {
+    word = word.toLowerCase();
+    if (word.length <= 3) return 1;
+    word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+    word = word.replace(/^y/, '');
+    const syllables = word.match(/[aeiouy]{1,2}/g);
+    return syllables ? syllables.length : 1;
+};
+
+const getRhymingWords = (word) => {
+    // Simple rhyming dictionary for common endings
+    const rhymeGroups = {
+        'ing': ['ing', 'ring', 'sing', 'thing', 'wing'],
+        'ay': ['ay', 'day', 'say', 'way', 'play'],
+        'ight': ['ight', 'night', 'right', 'sight', 'light'],
+        'own': ['own', 'down', 'town', 'crown', 'brown'],
+        'ake': ['ake', 'make', 'take', 'bake', 'cake'],
+        'all': ['all', 'call', 'fall', 'hall', 'ball'],
+        'ame': ['ame', 'came', 'fame', 'game', 'name'],
+        'and': ['and', 'band', 'hand', 'land', 'stand'],
+        'ate': ['ate', 'date', 'fate', 'gate', 'hate'],
+        'ear': ['ear', 'dear', 'fear', 'hear', 'near']
+    };
+
+    // Find the longest matching ending
+    for (const [ending, rhymes] of Object.entries(rhymeGroups)) {
+        if (word.endsWith(ending)) {
+            return rhymes;
+        }
+    }
+    return [word]; // Return the word itself if no rhyme group found
+};
+
+const countLineSyllables = (line) => {
+    return line.split(' ').reduce((count, word) => count + syllableCount(word), 0);
+};
+
+const findRhymingLine = (line, otherLines, syllableTolerance = 2) => {
+    const targetSyllables = countLineSyllables(line);
+    const lastWord = line.split(' ').pop().toLowerCase();
+    const rhymingWords = getRhymingWords(lastWord);
+    
+    // Group lines by syllable count for faster lookup
+    const syllableGroups = {};
+    otherLines.forEach(otherLine => {
+        const syllables = countLineSyllables(otherLine);
+        if (!syllableGroups[syllables]) {
+            syllableGroups[syllables] = [];
+        }
+        syllableGroups[syllables].push(otherLine);
+    });
+    
+    // Try each syllable difference
+    for (let diff = 0; diff <= syllableTolerance; diff++) {
+        for (const target of [targetSyllables + diff, targetSyllables - diff]) {
+            if (syllableGroups[target]) {
+                const matches = syllableGroups[target].filter(otherLine => {
+                    const otherLastWord = otherLine.split(' ').pop().toLowerCase();
+                    return rhymingWords.includes(otherLastWord);
+                });
+                if (matches.length > 0) {
+                    return matches[Math.floor(Math.random() * matches.length)];
+                }
+            }
+        }
+    }
+    return null;
+};
+
+// CSV parsing utility
+const parseCSV = (csvText) => {
+    const lines = csvText.split('\n');
+    const headers = lines[0].split(',');
+    return lines.slice(1).map(line => {
+        const values = line.split(',').map(value => value.trim());
+        const obj = {};
+        headers.forEach((header, index) => {
+            obj[header] = values[index];
+        });
+        return obj;
+    });
+};
+
+// Filter and clean lyrics
+const cleanLyrics = (lyrics, columnName) => {
+    return lyrics
+        .map(line => line[columnName])
+        .filter(line => {
+            // Filter out lines that are:
+            // - Empty or just whitespace
+            // - Too short (less than 3 words)
+            // - Too long (more than 15 words)
+            // - Contain brackets (usually stage directions or chorus markers)
+            // - Contain parenthetical content
+            if (!line) return false;
+            const words = line.split(' ');
+            if (words.length < 3 || words.length > 15) return false;
+            if (line.includes('[') || line.includes(']')) return false;
+            if (line.includes('(') || line.includes(')')) return false;
+            return true;
+        })
+        .map(line => line.replace(/"/g, '')); // Remove all double quotes
+};
+
+// Main application code
+document.addEventListener('DOMContentLoaded', async () => {
     const generateBtn = document.getElementById('generate-btn');
     const loadingDiv = document.getElementById('loading');
     const errorDiv = document.getElementById('error');
     const coupletsListDiv = document.getElementById('couplets-list');
+    
+    // Load lyrics data
+    let lyricsData;
+    try {
+        // Load both CSV files in parallel
+        const [kanyeResponse, shakespeareResponse] = await Promise.all([
+            fetch('static/lyrics/kanye_west.csv'),
+            fetch('static/lyrics/shakespeare_sonnets.csv')
+        ]);
+
+        if (!kanyeResponse.ok || !shakespeareResponse.ok) {
+            throw new Error(`Failed to load lyrics data: ${kanyeResponse.status} ${shakespeareResponse.status}`);
+        }
+
+        const kanyeText = await kanyeResponse.text();
+        const shakespeareText = await shakespeareResponse.text();
+
+        // Parse and clean the lyrics
+        const kanyeLines = parseCSV(kanyeText);
+        const shakespeareLines = parseCSV(shakespeareText);
+
+        lyricsData = {
+            kanye: cleanLyrics(kanyeLines, 'lyric_line'),
+            shakespeare: cleanLyrics(shakespeareLines, 'sonnet_line')
+        };
+
+        // Log some stats
+        console.log(`Loaded ${lyricsData.kanye.length} Kanye lines and ${lyricsData.shakespeare.length} Shakespeare lines`);
+    } catch (error) {
+        console.error('Error loading lyrics:', error);
+        errorDiv.textContent = `Error loading lyrics data: ${error.message}. Please try again later.`;
+        errorDiv.classList.remove('hidden');
+        return;
+    }
 
     async function generateVerses() {
         errorDiv.classList.add('hidden');
@@ -11,36 +151,47 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingDiv.classList.remove('hidden');
 
         try {
-            const response = await fetch('/generate', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ num_couplets: 5 })
-            });
-            const data = await response.json();
-            loadingDiv.classList.add('hidden'); // Hide spinner as soon as we get the response
-            if (!data.success) {
-                throw new Error(data.error || 'Failed to generate couplets');
+            const couplets = [];
+            const usedRhymes = new Set();
+            const maxAttempts = 150;
+            let attempts = 0;
+
+            while (couplets.length < 5 && attempts < maxAttempts) {
+                attempts++;
+                const kanyeLine = lyricsData.kanye[Math.floor(Math.random() * lyricsData.kanye.length)];
+                const kanyeWords = kanyeLine.split(' ');
+                const lastWord = kanyeWords[kanyeWords.length - 1].toLowerCase();
+
+                if (lastWord in usedRhymes) continue;
+                
+                const shakespeareMatch = findRhymingLine(kanyeLine, lyricsData.shakespeare);
+                if (shakespeareMatch) {
+                    couplets.push({
+                        line1: kanyeLine,
+                        line2: shakespeareMatch
+                    });
+                    usedRhymes.add(lastWord);
+                }
             }
+
             // Display all couplets
-            data.couplets.forEach(couplet => {
+            couplets.forEach(couplet => {
                 const block = document.createElement('div');
                 block.className = 'couplet-block';
                 block.innerHTML = `
                     <div style="flex:1;">
                         <div class="verse-text">${couplet.line1}<br>${couplet.line2}</div>
-                        <div class="verse-meta">
-                            ${couplet.source && couplet.source_url ? `<a href="${couplet.source_url}" class="kanye-source" target="_blank">${couplet.source}</a>` : ''}
-                        </div>
                     </div>
                 `;
                 coupletsListDiv.appendChild(block);
             });
+
+            loadingDiv.classList.add('hidden');
         } catch (error) {
-            errorDiv.textContent = error.message;
+            console.error('Error generating couplets:', error);
+            errorDiv.textContent = 'Error generating couplets';
             errorDiv.classList.remove('hidden');
-            loadingDiv.classList.add('hidden'); // Keep this one for error cases
+            loadingDiv.classList.add('hidden');
         } finally {
             generateBtn.disabled = false;
         }

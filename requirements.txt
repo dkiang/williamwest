@@ -1,4 +1,0 @@
-pandas==2.1.4
-pronouncing==0.2.0
-nltk==3.8.1
-flask==3.0.2 
