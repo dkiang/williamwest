@@ -33,7 +33,7 @@ body {
 }
 
 .container {
-    max-width: min(600px, 95vw);
+    max-width: min(800px, 95vw);
     margin: 0 auto;
     padding: clamp(1rem, 5vw, 2rem);
 }
@@ -109,7 +109,7 @@ body {
     background: white;
     border-radius: 16px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-    padding: clamp(1.2rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+    padding: clamp(1.2rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 2.5rem);
     margin-bottom: clamp(1.5rem, 5vw, 2.5rem);
     display: flex;
     flex-direction: column;
@@ -126,16 +126,19 @@ body {
 
 .couplet-block {
     position: relative;
-    margin-bottom: 0.2rem;
+    margin-bottom: 1.5rem;
     padding: 0.5rem;
     border-radius: 8px;
     transition: background-color 0.2s;
-    min-height: 80px;
-    display: block;
 }
 
 .couplet-block:hover {
     background-color: rgba(0,0,0,0.02);
+}
+
+.couplet-content {
+    position: relative;
+    min-height: 80px;
 }
 
 .verse-text {
@@ -144,10 +147,9 @@ body {
     font-weight: 500;
     color: var(--primary-color);
     text-align: left;
-    white-space: pre-line;
+    white-space: nowrap;
     line-height: 1.7;
     padding-bottom: 2rem;
-    display: block;
 }
 
 .verse-meta {
@@ -307,10 +309,11 @@ body {
         height: 32px;
     }
     .verse-block {
-        padding: 1.2rem 0.5rem 1rem 0.5rem;
+        padding: 1.2rem 1rem 1rem 1rem;
     }
     .verse-text {
         font-size: 1.05rem;
+        white-space: normal; /* Allow wrapping on mobile */
     }
     .big-pill-button {
         font-size: 1rem;
@@ -388,9 +391,6 @@ body {
     right: 1rem;
     display: flex;
     gap: 0.5rem;
-    z-index: 1;
-    text-align: right;
-    width: auto;
 }
 
 .favorite-heart, .delete-favorite {

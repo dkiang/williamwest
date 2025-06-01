@@ -57,6 +57,23 @@ const findRhymingLine = (line, otherLines, syllableTolerance = 2) => {
             if (syllableGroups[target]) {
                 const matches = syllableGroups[target].filter(otherLine => {
                     const otherLastWord = otherLine.split(' ').pop().toLowerCase();
+                    // Only accept if the rhyming word is different from the original word
+                    return rhymingWords.includes(otherLastWord) && otherLastWord !== lastWord;
+                });
+                if (matches.length > 0) {
+                    return matches[Math.floor(Math.random() * matches.length)];
+                }
+            }
+        }
+    }
+    
+    // If no different rhyming words found, try one more time with the original word
+    // This ensures we can still generate couplets even if no different rhymes are available
+    for (let diff = 0; diff <= syllableTolerance; diff++) {
+        for (const target of [targetSyllables + diff, targetSyllables - diff]) {
+            if (syllableGroups[target]) {
+                const matches = syllableGroups[target].filter(otherLine => {
+                    const otherLastWord = otherLine.split(' ').pop().toLowerCase();
                     return rhymingWords.includes(otherLastWord);
                 });
                 if (matches.length > 0) {
