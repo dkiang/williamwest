@@ -53,13 +53,21 @@ class LineProcessor:
         return rhymes
 
 def clean_line(line: str) -> str:
-    """Clean a line of text by removing parenthetical content and extra whitespace."""
+    """Clean a line of text by removing parenthetical content, extra whitespace, and censoring specific words."""
+    # First remove parenthetical content
     while '(' in line and ')' in line:
         start = line.find('(')
         end = line.find(')', start)
         if end == -1:
             break
         line = line[:start] + line[end+1:]
+    
+    # Censor specific words
+    line = line.replace('nigga', 'n****')
+    line = line.replace('Nigga', 'N****')
+    line = line.replace('niggas', 'n****s')
+    line = line.replace('Niggas', 'N****s')
+    
     return line.strip()
 
 def find_rhyming_line(line: str, 
