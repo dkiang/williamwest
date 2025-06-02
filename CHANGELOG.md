@@ -1,6 +1,13 @@
 # Changelog
 
 ## [Unreleased]
+- Added favorites management improvements:
+  - Implemented drag-and-drop reordering of favorite couplets
+  - Added copy to clipboard functionality for favorites
+  - Added visual feedback for drag operations
+  - Added copy success/failure states
+  - Added attribution text to copied poems
+  - Improved favorites view layout and spacing
 - Added comprehensive accessibility improvements:
   - Proper semantic HTML structure
   - ARIA roles and labels

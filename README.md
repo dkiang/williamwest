@@ -11,6 +11,8 @@ A web application that generates unique rhyming couplets by combining Kanye West
 - Prioritizes different rhyming words in each couplet
 - Generates multiple couplets at once for variety
 - Supports saving favorite couplets locally
+- Allows drag-and-drop reordering of favorites
+- Enables copying favorites as a complete poem
 
 ### Modern Web Interface
 - Clean, minimalist design with elegant typography
@@ -18,7 +20,9 @@ A web application that generates unique rhyming couplets by combining Kanye West
 - Responsive layout that works on all devices
 - Dark mode support
 - Loading indicators for better UX
-- Favorites management system
+- Favorites management system with drag-and-drop
+- Copy to clipboard functionality
+- Visual feedback for all user actions
 
 ### Accessibility Features
 - Semantic HTML structure
@@ -78,6 +82,8 @@ The web interface allows users to:
 - Generate new couplets with a single click
 - View multiple couplets at once
 - Save favorite couplets locally
+- Reorder favorites via drag-and-drop
+- Copy all favorites as a complete poem
 - Switch between generation and favorites views
 - Use the application on any device
 - Navigate using keyboard or screen reader
@@ -114,7 +120,11 @@ The web interface allows users to:
    - Displays results with proper formatting
    - Provides error handling
    - Maintains accessibility
-   - Supports favorites management
+   - Supports favorites management:
+     - Local storage for persistence
+     - Drag-and-drop reordering
+     - Copy to clipboard with attribution
+     - Visual feedback for all actions
 
 ## 📝 Notes
 
@@ -129,6 +139,8 @@ The web interface allows users to:
 - The application works offline after initial load
 - Note: The application does not filter for inappropriate content. The lyrics are used as-is from the source material.
 - Favorites are stored in the browser's local storage
+- Copied poems include attribution to the project
+- Drag-and-drop reordering is supported on both desktop and mobile devices
 
 ## 🙏 Credits
 

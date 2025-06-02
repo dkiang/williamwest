@@ -62,12 +62,17 @@
 
             <div id="favorites-block" class="favorites-block hidden">
                 <h2>Favorite Couplets</h2>
-                <div id="favorites-list"></div>
+                <div id="favorites-list" class="draggable-list" role="list" aria-label="Favorite couplets"></div>
                 <div id="no-favorites" class="hidden">
                     <p>No favorite couplets yet. Generate some couplets and click the heart icon to add them to your favorites!</p>
                 </div>
                 <div class="controls-center">
-                    <button id="create-another" class="big-pill-button">Create Another</button>
+                    <div class="button-group">
+                        <button id="create-another" class="big-pill-button">Create Another</button>
+                        <button id="copy-favorites" class="big-pill-button" disabled>
+                            Copy to Clipboard
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -84,7 +89,7 @@
                  aria-live="assertive"></div>
         </main>
         <footer class="credit-line" role="contentinfo">
-            <p>Inspired by the William/West student CS50 project</p>
+            <p>Inspired by the William/West student CS50 project by Zuck</p>
         </footer>
     </div>
     <script src="static/script.js"></script>
