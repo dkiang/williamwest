@@ -211,7 +211,6 @@ const renderFavorites = () => {
         block.draggable = true;
         block.dataset.index = index;
         block.innerHTML = `
-            <div class="drag-handle" aria-hidden="true">⋮⋮</div>
             <div class="verse-text">${couplet.line1}<br>${couplet.line2}</div>
             <div class="couplet-actions">
                 <i class="fas fa-trash delete-favorite" 
